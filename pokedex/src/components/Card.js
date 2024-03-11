@@ -1,6 +1,5 @@
 // Dalam Card.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './styles/Card.css'; // Sesuaikan dengan styling Anda
 
 function Card({ name, url }) {
