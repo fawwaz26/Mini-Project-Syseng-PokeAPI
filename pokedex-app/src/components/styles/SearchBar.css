@@ -1,0 +1,9 @@
+.search-bar {
+    padding: 10px;
+    margin: 10px;
+    width: 300px; /* Atau gunakan 100% untuk lebar penuh */
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+  }
+  

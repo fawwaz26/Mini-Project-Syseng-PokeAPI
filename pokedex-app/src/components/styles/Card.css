@@ -1,0 +1,37 @@
+/* Card.css */
+.card {
+  background: white;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Atau sesuaikan dengan lebar yang Anda inginkan */
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%; /* Gambar akan mengisi lebar kartu */
+  height: auto;
+}
+
+.card-info {
+  padding: 10px;
+}
+
+.card-info h3 {
+  color: #333; /* Warna teks untuk nama Pokémon */
+  margin: 10px 0;
+}
+
+.card-info p {
+  color: #777; /* Warna teks untuk nomor Pokémon */
+  margin: 5px 0;
+}
+
+.type {
+  display: inline-block;
+  background-color: #defde0; /* Warna latar tipe Pokémon */
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px 5px 5px 0;
+  font-size: 0.8em;
+}
