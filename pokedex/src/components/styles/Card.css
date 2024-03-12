@@ -18,6 +18,7 @@
   }
   
   .card-info h3 {
+    text-transform: capitalize;
     color: #333; /* Warna teks untuk nama Pokémon */
     margin: 10px 0;
   }

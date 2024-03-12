@@ -1,6 +1,6 @@
-// Dalam Card.js
 import React, { useState, useEffect } from 'react';
-import './styles/Card.css'; // Sesuaikan dengan styling Anda
+import { Link } from 'react-router-dom';
+import './styles/Card.css'; // Pastikan path sesuai dengan struktur folder Anda
 
 function Card({ name, url }) {
   const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -17,32 +17,35 @@ function Card({ name, url }) {
     }
 
     fetchPokemonDetails();
-  }, [url]); // URL sebagai dependensi, sehingga jika berubah, akan mengambil data baru
+  }, [url]);
 
   if (!pokemonDetails) {
-    return <div>Loading...</div>; // Atau tampilkan placeholder lainnya
+    return <div>Loading...</div>;
   }
 
-  // Dapatkan URL gambar Pokémon
   const imageUrl = pokemonDetails.sprites?.front_default;
+  // Gunakan ID atau nama Pokémon sebagai parameter untuk navigasi
+  const pokemonId = pokemonDetails.id;
 
   return (
-    <div className="card">
-      <div className="card-image">
-        <img src={imageUrl} alt={name} />
-      </div>
-      <div className="card-info">
-        <h3>{name}</h3>
-        <p>{`#${pokemonDetails.id.toString().padStart(3, '0')}`}</p>
-        <div className="card-types">
-          {pokemonDetails.types.map((typeInfo) => (
-            <span key={typeInfo.type.name} className="type">
-              {typeInfo.type.name}
-            </span>
-          ))}
+    <Link to={`/pokemon/${pokemonId}`} style={{ textDecoration: 'none' }}> {/* Style disini untuk menghilangkan underline default dari Link */}
+      <div className="card">
+        <div className="card-image">
+          <img src={imageUrl} alt={name} />
+        </div>
+        <div className="card-info">
+          <h3>{name}</h3>
+          <p>{`#${pokemonDetails.id.toString().padStart(3, '0')}`}</p>
+          <div className="card-types">
+            {pokemonDetails.types.map((typeInfo) => (
+              <span key={typeInfo.type.name} className="type">
+                {typeInfo.type.name}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
