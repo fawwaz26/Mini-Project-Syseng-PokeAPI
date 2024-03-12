@@ -1,0 +1,8 @@
+.dropdown {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    text-transform: capitalize;
+  }  
