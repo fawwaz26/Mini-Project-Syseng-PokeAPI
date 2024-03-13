@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json /app/
 
 # Menginstal dependencies
-RUN npm install
+RUN npm ci
 
 # Menyalin kode sumber ReactJS ke dalam container
 COPY . /app
