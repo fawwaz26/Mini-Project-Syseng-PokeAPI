@@ -1,0 +1,182 @@
+/* PokemonDetail.css */
+.pokemon-detail-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center; /* Teks rata tengah */
+  }
+
+.pokemon-deskripsi-container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 100px;
+    padding: 50px;
+    background-color: #fff; /* Ubah ke warna putih seperti pada gambar */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Teks rata tengah */
+  }
+
+.pokemon-review-container {
+    max-width: 800px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff; /* Ubah ke warna putih seperti pada gambar */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Teks rata tengah */
+  }
+
+  .back-button {
+    background-color: #e39013; /* Warna latar belakang tombol */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pokemon-name {
+    text-transform: capitalize;
+    text-align: left;
+    font-size: 32px;
+    color: #333;
+    margin: 0; /* Sesuaikan atau hapus margin sesuai kebutuhan */
+    padding-left: 30px;
+    padding-bottom: 40px; /* Sesuaikan atau hapus padding sesuai kebutuhan */
+    margin-bottom: 50px; /* Tambahkan margin bawah jika perlu */
+  }
+
+  .pokemon-description-head {
+    padding-top: 50px;
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+    margin: 0; /* Sesuaikan atau hapus margin sesuai kebutuhan */
+  }
+
+  .pokemon-description {
+    padding-top: 20px;
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+    margin: 0; /* Sesuaikan atau hapus margin sesuai kebutuhan */
+  }
+
+  .pokemon-image {
+    display: block;
+    transform: scale(2.5); /* Membuat gambar 50% lebih besar */
+    transform-origin: left; /* Menentukan titik asal transformasi */
+  }
+  
+  .left-column, .right-column {
+    flex: 3;
+  }
+  
+  
+  .pokemon-type {
+    text-transform: capitalize;
+    justify-content: left;
+    padding: 8px; /* Tambahkan padding agar background terlihat lebih baik */
+    display: inline-flex; /* Gunakan flex untuk mengatur item tipe */
+    flex-wrap: wrap; /* Izinkan item berpindah baris jika tidak cukup ruang */
+    gap: 4px; /* Tambahkan sedikit ruang antar tipe */
+    border-radius: 8px; /* Tambahkan border-radius untuk estetika */
+  }
+  
+  .type {
+    justify-content: left;
+    background-color: #ffffff; /* Warna latar untuk tiap item tipe */
+    padding: 4px 8px; /* Padding untuk tiap item tipe */
+    border-radius: 4px; /* Border-radius untuk item tipe */
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1); /* Sedikit bayangan untuk dimensi */
+    font-weight: bold; /* Buat teks tipe lebih tebal */
+    margin-right: 8px; /* Tambahkan margin kanan untuk memisahkan */
+    text-transform: capitalize; /* Opsi untuk membuat huruf pertama kapital */
+  }
+  
+  /* Opsional: Hapus margin kanan untuk item terakhir */
+  .type:last-child {
+    margin-right: 0;
+  }
+  
+  
+  .star-rating {
+    display: flex; /* Mengubah star rating menjadi horizontal */
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    transform: scale(4);
+    color: #ffd700;
+  }
+
+  .star-rating-review {
+    display: flex; /* Mengubah star rating menjadi horizontal */
+    justify-content: center;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    transform: scale(2);
+    color: #ffd700;
+  }
+  .review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 80%; /* Menetapkan lebar form */
+    margin-left: auto; /* Rata tengah form */
+    margin-right: auto;
+  }
+  
+  .review-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 100px;
+  }
+  
+  .review-form button {
+    padding: 10px 20px;
+    background-color: #e39013; /* Ubah warna tombol menjadi biru */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .review-form button:hover {
+    background-color: #0056b3; /* Warna tombol saat di-hover */
+  }
+  
+  .review-list {
+    width: 80%; /* Menetapkan lebar list review */
+    margin-left: auto; /* Rata tengah list review */
+    margin-right: auto;
+  }
+  
+  .review-item {
+    background-color: #f2f2f2; /* Ubah warna latar untuk review */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Teks review rata kiri */
+  }
+  
+  .review-item p {
+    margin: 0;
+    padding-bottom: 10px; /* Menambahkan spasi di bawah teks review */
+  }
+  
+  /* Anda mungkin juga perlu menambahkan beberapa CSS untuk mengatur ulasan dan bintang yang diberikan pengguna */
+  .review-rating {
+    display: flex;
+    align-items: center; /* Vertikal rata tengah untuk bintang rating */
+  }
+  
+  .review-rating .stars {
+    color: #ffd700; /* Warna bintang */
+    margin-right: 10px; /* Spasi antara bintang dan teks */
+  }
+  
