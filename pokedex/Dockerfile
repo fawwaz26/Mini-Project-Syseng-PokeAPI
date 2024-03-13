@@ -13,9 +13,6 @@ RUN npm install
 # Menyalin kode sumber ReactJS ke dalam container
 COPY . /app
 
-# Membangun aplikasi untuk produksi
-RUN npm run build
-
 # Fase run: Menggunakan Nginx untuk melayani aplikasi ReactJS
 FROM nginx:alpine
 
