@@ -5,10 +5,10 @@ FROM node:14-alpine as build
 WORKDIR /app
 
 # Menyalin package.json dan package-lock.json
-COPY package*.json /app/
+COPY package.json /app/
 
 # Menginstal dependencies
-RUN npm ci
+RUN npm install
 
 # Menyalin kode sumber ReactJS ke dalam container
 COPY . /app
