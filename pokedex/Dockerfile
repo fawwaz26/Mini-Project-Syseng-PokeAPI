@@ -13,6 +13,8 @@ RUN npm install
 # Menyalin kode sumber ReactJS ke dalam container
 COPY . /app
 
+RUN chmod +x node_modules/.bin/react-scripts
+
 # Membangun aplikasi untuk produksi
 RUN npm run build
 
