@@ -118,6 +118,7 @@
     transform: scale(2);
     color: #ffd700;
   }
+
   .review-form {
     display: flex;
     flex-direction: column;
@@ -128,12 +129,15 @@
     margin-right: auto;
   }
   
+  
   .review-form textarea {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     min-height: 100px;
+    resize: none; /* Mencegah pengubahan ukuran */
   }
+
   
   .review-form button {
     padding: 10px 20px;
