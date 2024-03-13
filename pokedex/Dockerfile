@@ -1,5 +1,5 @@
 # Fase build: Menggunakan image Node.js untuk membangun kode sumber ReactJS
-FROM node:alpine as build
+FROM node:14-alpine as build
 
 # Menetapkan direktori kerja
 WORKDIR /app
