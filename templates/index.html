@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Search</title>
+    <title>PokeDex App</title>
     <style>
         .pokemon-cards {
             display: grid;
@@ -16,6 +16,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            /* Make card clickable */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .pokemon-card:hover {
+            transform: translateY(-5px);
         }
 
         .pokemon-card img {
@@ -34,15 +41,36 @@
             margin: 5px 0;
         }
 
+        /* CSS for filter buttons */
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-buttons a {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-buttons a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <h1>Pokemon Search</h1>
+    <h1>PokeDex App</h1>
 
     <!-- Search Box -->
     <form action="{{ url_for('pokemon') }}" method="POST">
         <label for="pokemon_name">Search Pokemon:</label>
-        <input type="text" id="pokemon_name" name="pokemon_name" placeholder="Enter Pokemon name">
+        <input type="text" id="pokemon_name" name="pokemon_name" placeholder="Enter Pokemon name/id">
         <button type="submit">Search</button>
     </form>
 
@@ -50,11 +78,11 @@
 
     <!-- Filter by Type -->
     <h2>Filter by Type:</h2>
-    <ul>
+    <div class="filter-buttons">
         {% for type in all_type %}
-            <li><a href="{{ url_for('filter_by_type', type_name=type.name) }}">{{ type.name }}</a></li>
+            <a href="{{ url_for('filter_by_type', type_name=type.name) }}">{{ type.name }}</a>
         {% endfor %}
-    </ul>
+    </div>
 
     <hr>
 
@@ -62,13 +90,16 @@
     <h2>Featured Pokemon:</h2>
     <div class="pokemon-cards">
         {% for pokemon in featured_pokemon %}
-            <div class="pokemon-card">
-                <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
-                <h3>{{ pokemon.name }}</h3>
-                <p>HP: {{ pokemon.hp }}</p>
-                <p>Attack: {{ pokemon.attack }}</p>
-                <p>Defense: {{ pokemon.defense }}</p>
-            </div>
+            <a href="{{ url_for('pokemon', pokemon_name=pokemon.name) }}">
+                <div class="pokemon-card">
+                    <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+                    <h3>{{ pokemon.name }}</h3>
+                    <p>Type: {{ pokemon.type }}</p>
+                    <p>HP: {{ pokemon.hp }}</p>
+                    <p>Attack: {{ pokemon.attack }}</p>
+                    <p>Defense: {{ pokemon.defense }}</p>
+                </div>
+            </a>
         {% endfor %}
     </div>
 </body>

@@ -1,1 +1,35 @@
-.venv/
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment variables file
+.env
+
+# Local development files
+venv/
+*.sqlite
+
+# Dependency directories
+lib/
+bin/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Compiled Python bytecode
+__pycache__/
+*.py[cod]
+
+# Other
+.DS_Store
