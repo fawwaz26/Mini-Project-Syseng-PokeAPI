@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Search</title>
+    <style>
+        .pokemon-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .pokemon-card {
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .pokemon-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .pokemon-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .pokemon-card p {
+            margin: 5px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Pokemon Search</h1>
+
+    <!-- Search Box -->
+    <form action="{{ url_for('pokemon') }}" method="POST">
+        <label for="pokemon_name">Search Pokemon:</label>
+        <input type="text" id="pokemon_name" name="pokemon_name" placeholder="Enter Pokemon name">
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <!-- Filter by Type -->
+    <h2>Filter by Type:</h2>
+    <ul>
+        {% for type in all_type %}
+            <li><a href="{{ url_for('filter_by_type', type_name=type.name) }}">{{ type.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <!-- Tampilkan Kartu Pokemon -->
+    <h2>Featured Pokemon:</h2>
+    <div class="pokemon-cards">
+        {% for pokemon in featured_pokemon %}
+            <div class="pokemon-card">
+                <img src="{{ pokemon.image }}" alt="{{ pokemon.name }}">
+                <h3>{{ pokemon.name }}</h3>
+                <p>HP: {{ pokemon.hp }}</p>
+                <p>Attack: {{ pokemon.attack }}</p>
+                <p>Defense: {{ pokemon.defense }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

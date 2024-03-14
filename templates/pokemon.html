@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pokemon.name }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ pokemon.name }}</h1>
+        <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}" width="200">
+        <p>Description: {{ pokemon.description }}</p>
+        <h2>Ratings</h2>
+        <ul>
+            {% for review in pokemon_reviews %}
+                {% if review.pokemon_name == pokemon.name %}
+                    <li>Rating: {{ review.rating }} - Comment: {{ review.comment }} - IP: {{ review.user_ip }} - User Agent: {{ review.user_agent }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <h2>Rate this Pokémon</h2>
+        <form action="{{ url_for('rate_pokemon') }}" method="post">
+            <input type="hidden" name="pokemon_name" value="{{ pokemon.name }}">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating (1-5):</label>
+                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Rating</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtered Pokemon List</title>
+    <style>
+        /* Add your styles here */
+        /* Sample style is already provided in the previous message */
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Filtered Pokemon List</h1>
+    </header>
+    <div class="container">
+        {% if pokemon_list %}
+        <ul>
+            {% for pokemon in pokemon_list %}
+            <li>
+                <img src="{{ pokemon['image'] }}" alt="{{ pokemon['name'] }}">
+                <h2>{{ pokemon['name'] }}</h2>
+                <p>HP: {{ pokemon['hp'] }}</p>
+                <p>Attack: {{ pokemon['attack'] }}</p>
+                <p>Defense: {{ pokemon['defense'] }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No Pokemon found for this type.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

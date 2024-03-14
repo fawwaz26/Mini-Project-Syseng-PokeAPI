@@ -1,0 +1,8 @@
+runtime: python39
+entrypoint: gunicorn -b :$PORT app:app
+
+env_variables:
+  CLOUD_SQL_USERNAME: root
+  CLOUD_SQL_PASSWORD: fawwazsadri
+  CLOUD_SQL_DATABASE_NAME: pokedexdb
+  CLOUD_SQL_CONNECTION_NAME: the-dominion-417115:asia-southeast2:pokedexapp
