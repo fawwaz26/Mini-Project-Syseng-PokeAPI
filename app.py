@@ -6,6 +6,8 @@ import pymysql
 import os
 import mysql.connector
 from config import DB_CONFIG
+from google.cloud.sql.connector import Connector, IPTypes
+import sqlalchemy
 
 load_dotenv()
 
@@ -14,33 +16,26 @@ CORS(app)
 
 app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
 
-# Fungsi untuk koneksi ke database
-def connect_to_database():
-    try:
-        connection = mysql.connector.connect(**DB_CONFIG)
-        return connection
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-        return None
+connector = Connector()
 
-# db_user = os.environ.get('CLOUD_SQL_USERNAME')
-# db_password = os.environ.get('CLOUD_SQL_PASSWORD')
-# db_name = os.environ.get('CLOUD_SQL_DATABASE_NAME')
-# db_connection_name = os.environ.get('CLOUD_SQL_CONNECTION_NAME')
+# Fungsi untuk koneksi ke database Google Cloud SQL
+def connect_to_database() -> pymysql.connections.Connection:
+    conn: pymysql.connections.Connection = connector.connect(
+        "the-dominion-417115:asia-southeast2:pokedexapp",
+        "pymysql",
+        user="pokedexapp",
+        password="fawwazsadri",
+        db="pokedexdb"
+    )
+    return conn
 
-# # Fungsi untuk koneksi ke database Google Cloud SQL
+# # Fungsi untuk koneksi ke local database
 # def connect_to_database():
-#     unix_socket = '/cloudsql/{}'.format(db_connection_name)
 #     try:
-#         if os.environ.get('GAE_ENV') == 'standard':
-#             conn = pymysql.connect(user=db_user,
-#                                    password=db_password,
-#                                    unix_socket=unix_socket,
-#                                    db=db_name,
-#                                    cursorclass=pymysql.cursors.DictCursor)
-#             return conn
-#     except pymysql.MySQLError as e:
-#         print(f"Error connecting to the database: {e}")
+#         connection = mysql.connector.connect(**DB_CONFIG)
+#         return connection
+#     except mysql.connector.Error as err:
+#         print(f"Error: {err}")
 #         return None
 
 def save_pokemon_detail_to_database(pokemon_detail):
@@ -85,23 +80,21 @@ def save_review_to_database(pokemon_name, rating, comment, user_ip, user_agent):
             conn.close()
             return True
         
-        except mysql.connector.Error as err:
+        except pymysql.Error as err:
             print(f"Error saving Pokémon review to database: {err}")
             return False
-
-
 
 def load_pokemon_detail_from_database(pokemon_id):
     conn = connect_to_database()
     if conn:
         try:
-            cursor = conn.cursor(dictionary=True)
+            cursor = conn.cursor()
             cursor.execute("SELECT * FROM pokemon_details WHERE id = %s", (pokemon_id,))
-            pokemon_detail = cursor.fetchone()
+            pokemon_detail = cursor.fetchone()  # Menggunakan fetchone() untuk mengembalikan satu baris dalam bentuk kamus
             cursor.close()
             conn.close()
             return pokemon_detail
-        except mysql.connector.Error as err:
+        except pymysql.Error as err:
             print(f"Error loading Pokémon detail from database: {err}")
             return None
 
@@ -110,15 +103,17 @@ def load_reviews_from_database(pokemon_name):
     conn = connect_to_database()
     if conn:
         try:
-            cursor = conn.cursor(dictionary=True)
+            cursor = conn.cursor()
             cursor.execute("SELECT * FROM pokemon_reviews WHERE pokemon_name = %s", (pokemon_name,))
-            reviews = cursor.fetchall()
+            columns = [col[0] for col in cursor.description]
+            reviews = [dict(zip(columns, row)) for row in cursor.fetchall()]
             cursor.close()
             conn.close()
             return reviews
         except mysql.connector.Error as err:
             print(f"Error loading reviews from database: {err}")
             return None
+
 
 # Fungsi untuk mendapatkan data Pokemon berdasarkan nama
 def get_pokemon_by_name(pokemon_name):
